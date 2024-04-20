@@ -4,7 +4,7 @@ async function main() {
   const { sendFile } = require("./utils");
   const express = require("express");
 
-  const bot = new Telegraf("6368395118:AAHtBmg3OBgk4F-IzPZc7z24BbdD0UOUcQ0");
+  const bot = new Telegraf(process.env.BOT_TOKEN);
 
   bot.start(async (ctx) => {
     try {
@@ -54,7 +54,7 @@ async function main() {
 
   const app = express();
   // Set the bot API endpoint
-  app.use(await bot.createWebhook({ domain: "https://redterabox-downloader-telegram.onrender.com" }));
+  app.use(await bot.createWebhook({ domain: process.env.WEBHOOK_URL }));
 
   app.listen(process.env.PORT || 3000, () => console.log("Server Started"));
 }
